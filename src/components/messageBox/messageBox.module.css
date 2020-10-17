@@ -1,0 +1,47 @@
+.container {
+  height: 59vh;
+  background: url('https://cdn.discordapp.com/attachments/750063818197172284/767123755561648158/unknown.png');
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+.messageList {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.isSender {
+  align-self: flex-end;
+  background-color: lightgray;
+  max-width: 300px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  padding: 5px;
+  text-align: center;
+  width: 300px;
+  padding: 20px;
+  color: #000;
+  font-family: arial;
+  position:relative;
+}
+
+.notSender{
+  align-self: flex-start;
+  background-color: white;
+  max-width: 700px;
+  max-width: 300px;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 300px;
+  padding: 20px;
+  color: #000;
+  font-family: arial;
+  position:relative;
+}

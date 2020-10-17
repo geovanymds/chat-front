@@ -1,0 +1,39 @@
+.picture {
+  border-radius: 50%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 852PX;
+  padding: 1rem;
+  background-color:white;
+  margin-bottom: 0;
+  color: #0F0F33;
+  height: 9vh;
+  border-bottom: 4px solid gray;
+  overflow-x: hidden;
+  position: absolute;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.desc {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.infoContainer{
+  margin-left: 10px;
+}
+

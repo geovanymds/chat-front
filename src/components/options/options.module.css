@@ -1,0 +1,10 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  background-color: #E5E5E5;
+  padding-top: 3px;
+  height: 6vh;
+  padding-right: 3px;
+}
+
+    

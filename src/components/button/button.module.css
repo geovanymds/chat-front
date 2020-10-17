@@ -1,0 +1,13 @@
+.container {
+  padding: 5px;
+}
+.icon {
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}

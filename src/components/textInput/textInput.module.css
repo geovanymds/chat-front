@@ -1,0 +1,16 @@
+.container{
+  display: flex;
+  padding-top: 3px;
+  background-color: #E5E5E5;
+  color:white;
+  text-transform: uppercase;
+  font-size: 30px;
+  height: 7vh;
+}
+
+.sendbar{
+  border-radius: 20px;
+  width: 800px;
+  padding-left: 20px;
+  padding-bottom: 5px;
+}

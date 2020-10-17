@@ -1,0 +1,53 @@
+.container{
+  display: flex;
+  justify-content: center;
+  background-color: #E5E5E5;
+  width: 68vw;
+  margin-top:14vh;
+  overflow-x: hidden;
+}
+
+.memberList{
+  display: flex;
+  overflow-x: auto;
+  
+}
+
+.box{
+  background-color: white;
+  padding: 10px;
+  margin-right: 5px;
+  height: 92px;
+}
+
+.memberInfo {
+  display: flex;
+}
+
+.icon {
+  height: 15px;
+  width: 15px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.name {
+  font-size: 12px;
+  font-weight: 400;
+  max-width: 80px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

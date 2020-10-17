@@ -1,0 +1,18 @@
+.box {
+  width: 100vw ;
+  min-height: 630px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  height: 100vh;
+}
+
+.profileAndChats {
+  background: yellowgreen;
+}
+
+.messagesAndSend {
+  display: flex; 
+  flex-direction: column;
+  background: #E5E5E5;
+}
