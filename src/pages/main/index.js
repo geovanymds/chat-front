@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Profile from "../../components/profileCard";
 import Search from "../../components/searchBar"
 import Options from "../../components/options"
@@ -8,6 +8,9 @@ import Members from "../../components/members"
 import ChatTop from "../../components/chatTop/index"
 import MessageBox from "../../components/messageBox"
 import TextInput from "../../components/textInput"
+import ModalCreateChat from "../../components/modal"
+import RequestList from "../../components/friendRequestList"
+import { Modal } from '@material-ui/core';
 
 function Main() {
 
@@ -36,6 +39,21 @@ function Main() {
     { id: "13", name: "member 13"}
 ];
 
+const users = [
+  { id: "1", name: "member 01"},
+  { id: "2", name: "member 02"},
+  { id: "3", name: "member 03"},
+  { id: "4", name: "member 04"},
+  { id: "5", name: "member 05"},
+  { id: "6", name: "member 06"},
+  { id: "8", name: "member 08"},
+  { id: "9", name: "member 09"},
+  { id: "10", name: "member 10"},
+  { id: "11", name: "member 11"},
+  { id: "12", name: "member 12"},
+  { id: "13", name: "member 13"}
+];
+
 const messages = [
   { id: 1, content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ", sender: { id: 1, nome: 'Geovany' }},
   { id: 2, content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", sender: { id: 1, nome: 'Geovany' }},
@@ -43,13 +61,25 @@ const messages = [
   { id: 4, content: "mensagem 04", sender: { id: 4, nome: 'Thiago' }},
 ];
 
+  const [show,setShow] = useState(false);
+  const handleShow = () => {setShow(true)}
+  const handleClose= () => {setShow(false)}
+  const [option, setOption] = useState("chats");
+
   return (
+    
     <div className={styles.box}>
+        <Modal 
+        open={show}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        ><ModalCreateChat/></Modal>
       <div className={styles.profileAndChats}>
         <Profile/>
         <Search/>
-        <Options/>
-        <ChatList chats={chats}/>
+        <Options show={show} setShow={handleShow} option={option} setOption={setOption}/>
+        {option==="chats" ? <ChatList chats={chats}/> : <RequestList users={users}/>}
         <div className={styles.chats}></div>
       </div>
       <div className={styles.messagesAndSend}>
