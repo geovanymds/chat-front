@@ -1,0 +1,39 @@
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chats {
+  overflow-y: scroll;
+  max-height: 439px;
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  background-color: #E5E5E5;
+  padding: 1rem 0;
+  border-bottom: #0F0F33 solid 1px;
+}
+
+.title{
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #0F0F33;
+}
+
+.exit{
+  color: #EE4444;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 15px 0 0 15px;
+}

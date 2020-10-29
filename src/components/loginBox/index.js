@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import axios from "axios"
-import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import styles from "./login.module.css";
 
 function Login({ state, setState }) {
@@ -23,9 +23,12 @@ function Login({ state, setState }) {
 
       const {data} = await axios.post(`http://localhost:8080/users/login`, user);
 
-      localStorage.setItem('userId',data.id);
-      localStorage.setItem('userName',data.userName);
+      localStorage.setItem('userLogin',data.login);
+      localStorage.setItem('userName',data.user);
       localStorage.setItem('userToken',data.token);
+      localStorage.setItem('userId',data._id);
+
+      console.log(data);
 
       navigate('/main');
 

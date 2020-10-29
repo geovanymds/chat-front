@@ -1,26 +1,20 @@
-/* .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width:100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+#private {
+  margin-top: 15px;
 }
 
-.modal_main {
-  position:fixed;
-  background: white;
-  width: 80%;
-  height: auto;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-} */
+.block{ 
+  font-size: 12px;
+  padding: 5px;
+  margin: 5px  0px 5px 8px;
+  text-transform: uppercase;
+  background-color: darkgray;
+}
 
 button{
+  display:block;
   color: white;
   font-size: 12px;
-  height: 30px;
+  height: 27px;
   padding: 5px;
   text-transform: uppercase;
 }
@@ -28,15 +22,15 @@ button{
 input{
   border-radius: 4px;
   max-width: 400px;
+  padding: 15px 0 2px 5px;
 }
 
 textarea{
   resize: none;
 }
 
-
 .container{
-  margin: 0 auto;
+  margin: 5rem auto;
   width: 100%;
   max-width: 600px;
   display: flex;
@@ -55,7 +49,13 @@ textarea{
   align-content: center;
 }
 
-.container > *{
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container > *:not(.dropContainer, .dropContainerImage){
   padding: 10px;
   border-bottom: 2px solid darkgray;
 }
@@ -71,6 +71,12 @@ textarea{
   display: flex;
   flex-direction: row;
   align-content: center;
+  margin-left: 44px;
+}
+
+.tagList{
+  display: flex;
+  flex-direction: row;
 }
 
 .exit{
@@ -78,71 +84,82 @@ textarea{
   text-transform: uppercase;
   font-size: 14px;
   background-color: #E5E5E5;
-  margin-top: 15px;
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+  margin: 15px 0 0 15px;
 }
 
 .addbutton{
   margin-top: 7px;
 }
 
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.checkPrivate {
+  width: 30px;
+  margin: 0;
 }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
+/* 
+.dropContainer, .dropContainerImage{
+  margin: 1rem auto;
   border-radius: 50%;
+  cursor: pointer;
+  width: 8rem;
+  height: 8rem;
+}
+
+.dropContainer{
+  border: 5px #ddd;
+  transition: height 0.2s ease;
+  background-color: #bbb;
+}
+
+.dropContainer:focus, .dropContainerImage:focus{
+  outline: none
+}
+
+.newpicture{
+  width: 100%;
+  height: 100%;
+}
+
+.picture {
+  margin:  1.5rem;
+  width: 5rem;
+  height: 5rem;
+}
+ */
+
+ .dropContainer {
+  border: 10px #ddd;
+  margin: 0 auto;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 10px;
+}
+
+.dropContainer:focus {
+  outline: none
+}
+
+.picture {
+  margin:  1.5rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.dropContainerImage {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.newPicture {
+  width: 100%;
+  height: 100%;
 }

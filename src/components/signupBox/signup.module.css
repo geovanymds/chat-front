@@ -96,6 +96,43 @@ button:hover span:after {
 }
 
 
+.dropContainer {
+  border: 10px #ddd;
+  margin: 0 auto;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  width: 8rem;
+  height: 8rem;
+}
+
+.dropContainer:focus {
+  outline: none
+}
+
+.picture {
+  margin:  1.5rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.dropContainerImage {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  margin: 0 auto;
+}
+
+.newPicture {
+  width: 100%;
+  height: 100%;
+}
+
+
+
 
 
 

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import chatIcon from "../../assets/icons/chat.svg";
 import createChatIcon from "../../assets/icons/create-chat.svg";
 import requestIcon from "../../assets/icons/friend-request.svg";
 import Button from "../button";
-import Login from "../loginBox";
 import styles from "./options.module.css";
 
-function Options({ show, setShow, option, setOption }) {
+function Options({ setShow, setOption }) {
 
   const handleOpen = () => {
     setShow(true);

@@ -3,8 +3,8 @@
   flex-direction: row;
   padding: 1rem;
   gap: 1rem;
-  background-color:#0F0F33;
-  color: #FFF;
+  background-color:#FFF;
+  color:#0F0F33;
   border-bottom: 2px solid #E5E5E5;
 }
 
@@ -12,26 +12,6 @@ img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-}
-
-.buttonContainer {
-  display: flex;
-}
-
-.btn {
-  background-color: #FFF;
-  width: 5.7rem;
-  padding: 5px 8px 5px 5px;
-  border-radius: 6px;
-  margin-right: 10px;
-}
-
-.btn:hover {
-  cursor: pointer;
-}
-
-.btnContent {
-  margin-left: 5px;
 }
 
 .name {

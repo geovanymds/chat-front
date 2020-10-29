@@ -8,7 +8,7 @@ function LoginPage() {
   const [useSign, setSign] = useState("signin");
 
   return useSign === "signin" ? (
-    <Login state={useSign} setState={setSign} />
+    <Login state={useSign} setState={setSign} className={styles}/>
   ) : (
     <Signup state={useSign} setState={setSign} />
   );

@@ -1,12 +1,12 @@
-import React from 'react'
-import './App.css'
-import './components/loginBox'
-import Router from './routes/index'
+import React from "react";
+import "./App.css";
+import "./components/loginBox";
+import Router from "./routes/index";
 
 function App() {
   return (
     <div className="App">
-      <Router/>
+        <Router />
     </div>
   );
 }

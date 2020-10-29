@@ -1,13 +1,27 @@
-.container {
-  padding: 5px;
-}
-.icon {
-  border-radius: 0;
+.both {
+  display: flex;
   height: 100%;
   width: 100%;
-  padding-bottom: 5px;
+  color: blue;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.icon {
+  border-radius: 0;
+  padding-top: 3px;
+  height: 20px;
+  width: 20px;
 }
 
 .icon:hover {
   cursor: pointer;
+}
+
+.text {
+  padding: 3px 0 0 10px;
+  font-weight: 400;
 }

@@ -2,13 +2,14 @@ import React from "react";
 import ChatCard from "../../components/chatCard"
 import styles from "./chatList.module.css"
 
-function ChatList({chats}) {
+function ChatList({chats, setChat}) {
+
   return (
     <div className={styles.chats}>
       <ul>
-        {chats.map((chat) => (
-          <li key={chat.id}>
-            <ChatCard chatName={chat.name} chatDesc={chat.desc}/>
+        {chats.map((chat, index) => (
+          <li key={index} onClick={()=>{setChat(index)}}>
+            <ChatCard chat={chat} />
           </li>
         ))}
       </ul>

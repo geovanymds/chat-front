@@ -15,20 +15,22 @@ function Friend({ userName }) {
           <div className={styles.buttonContainer}>
             <div className={styles.btn}>
               <Button
-                type="icon"
+                type="both"
                 icon={accept}
                 alt="accept"
-                width="20px"
-                height="20px"
+                width="8px"
+                height="8px"
+                text="accept"
               />
             </div>
             <div className={styles.btn}>
               <Button
-                type="icon"
+                type="both"
                 icon={reject}
                 alt="reject"
-                width="20px"
-                height="20px"
+                width="8px"
+                height="8px"
+                text="reject"
               />
             </div>
           </div>

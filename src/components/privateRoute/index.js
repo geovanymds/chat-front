@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Navigate } from "react-router-dom";
 
 function PrivateRoute({component: Component, path, redirectTo}) {

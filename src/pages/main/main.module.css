@@ -8,11 +8,16 @@
 }
 
 .profileAndChats {
-  background: yellowgreen;
+  background:#2F3353;
 }
 
 .messagesAndSend {
   display: flex; 
   flex-direction: column;
   background: #E5E5E5;
+}
+
+.searchResult {
+  max-width: 40vw;
+  margin: 4rem auto;
 }
