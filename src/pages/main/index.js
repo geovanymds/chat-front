@@ -44,18 +44,17 @@ function Main() {
 
       setChats([...userChats.data.chats]);
 
-      const chatsMensagens = []
-      userChats.data.chats.forEach((chat) => {
-        chatsMensagens.push({chatId: chat._id, messages: [], page: 0})
-      });
+      // const chatsMensagens = []
+      // userChats.data.chats.forEach((chat) => {
+      //   chatsMensagens.push({chatId: chat._id, messages: [], page: 0})
+      // });
  
       if(!!userChats.data.chats[0]){
       const newMensagens = await axios.get(
         `http://localhost:8080/chats/messages` , {chatId: userChats.data.chats[0]._id,
         page: 0}
       );
-      chatsMensagens[0].messages = newMensagens.data
-      setMessages(chatsMensagens);
+      setMessages([...newMensagens]);
       }
 
       if(!!userChats.data.chats[0]) {
@@ -80,13 +79,8 @@ function Main() {
         date,
         content,
       }
-      const chatsMensagens = messages
-      chatsMensagens.forEach((message) => {
-        if(message.chatId === chatId){
-          message.messages = [...message.messages, newMessage]
-        }
-      })
-      setChats(chatsMensagens)
+      if((chats.length > 0) && chatId === chats[openChat]._id)
+      setMessages([...messages, newMessage])
     });
   });
 
@@ -99,27 +93,17 @@ function Main() {
     async function fetchData(){
       setMembers(chats.length > 0 ? chats[openChat].members : []);
       
-      if(!!messages[openChat]&&messages[openChat].messages.length===0){
-      const chatsMessages = await axios.post(
+      if(!!messages[openChat]){
+      const newMensagens = await axios.post(
         `http://localhost:8080/chats/messages` , { chatId: messages[openChat].chatId,
         page: 0}
       );
-      const newMensagens = messages
-      chats[openChat].messages = chatsMessages.data
-      setMessages(newMensagens)
+      setMessages([...newMensagens]);
       }
     }
     fetchData();
   }, [openChat]);
 
-
-
-
-  // useEffect(() => {
-  //   setMessages(chats.length > 0 ? chats[openChat].messages : []);
-  // }, [chats.length > 0 ? chats[openChat].messages : chats]);
-
-  //chats.length > 0 ? [chats]: []
 
   const handleShow = () => {
     setShow(true);
@@ -169,7 +153,7 @@ function Main() {
       <div className={styles.messagesAndSend}>
         {chats.length > 0 && <ChatTop chat={chats[openChat]} />}
         <Members members={!!members ? members : []} />
-        <MessageBox messages={!!messages[openChat]? messages[openChat].messages: []} user={globalUser.login}/>
+        <MessageBox messages={messages} user={globalUser.login}/>
         <TextInput chatId={chats.length > 0 ? chats[openChat]._id : null} sender={globalUser.login}/>
       </div>
     </div>
