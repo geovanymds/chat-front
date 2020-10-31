@@ -13,10 +13,7 @@ function ResultList({ chats }) {
             {chats.map((chat) => (
               <li key={chat._id}>
                 <ResultCard
-                  avatarUrl={chat.avatarUrl}
-                  chatName={chat.name}
-                  chatDesc={chat.description}
-                  passRequired={chat.password.length>0 ? true : false}
+                  chat={chat}
                 />
               </li>
             ))}

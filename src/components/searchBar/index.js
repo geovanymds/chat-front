@@ -8,10 +8,11 @@ function Search({ setShowChats, setResultChats }) {
   const [sendSearch, setSendSearch] = useState("");
 
   const handleSearch = async (event) => {
-    if (event.key === "Enter"&&search.length>0) {
-
-      console.log(sendSearch);
-      const { data } = await axios.get(`http://localhost:8080/chats/search?keyWord=${sendSearch}`);
+    if (event.key === "Enter" && search.length > 0) {
+      const login = localStorage.getItem("userLogin");
+      const { data } = await axios.get(
+        `http://localhost:8080/chats/search?keyWord=${sendSearch}&login=${login}`
+      );
       console.log(data);
       setResultChats([...data.chats]);
       setShowChats(true);
@@ -20,11 +21,11 @@ function Search({ setShowChats, setResultChats }) {
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-  }
+  };
 
-  useEffect(()=>{
-    setSendSearch(search.trim().split(' ').join('+'));
-  },[search]);
+  useEffect(() => {
+    setSendSearch(search.trim().split(" ").join("+"));
+  }, [search]);
 
   return (
     <div className={styles.container}>

@@ -28,3 +28,13 @@ img {
 .infoContainer{
   margin-left: 10px;
 }
+
+.enter {
+  color: #FFF;
+  background-color: #515EC5;
+  margin-top: 15px;
+  padding: 10px;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+}

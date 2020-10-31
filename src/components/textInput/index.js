@@ -1,13 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
 import Button from "../button"
 import sendIcon from "../../assets/icons/send.svg"
 import styles from "./textInput.module.css"
 
-function TextInput() {
+function TextInput({chatId, sender}) {
+
+  const [content, setContent] = useState("");
+
+  const messageSender = async (event) => {
+    try { 
+
+      const message = {
+        chatId, 
+        sender, 
+        content,
+      }
+
+      const {data} = await axios.post(`http://localhost:8080/chats/send`, message);
+
+      setContent("");
+
+    } catch(error) {
+
+      console.log(error);
+      alert(error);
+
+    }
+
+  }
+
   return (
     <div className={styles.container}>
-      <input type="text" className={styles.sendbar}/>
-      <Button type="icon" icon={sendIcon}/>
+      <input type="text" value={content} onChange={(event) => {setContent(event.target.value);}} className={styles.sendbar}/>
+      <div onClick={messageSender}>
+        <Button type="icon" icon={sendIcon}/>
+      </div>
     </div>
   );
 }

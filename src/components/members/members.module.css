@@ -24,19 +24,11 @@
   display: flex;
 }
 
-.icon {
-  height: 15px;
-  width: 15px;
-}
-
-.icon:hover {
-  cursor: pointer;
-}
-
 .name {
   font-size: 12px;
   font-weight: 400;
-  max-width: 80px;
+  max-width: 60px;
+  text-align: center;
 }
 
 ::-webkit-scrollbar-track {

@@ -8,7 +8,7 @@ import { Alert } from "@material-ui/lab";
 import Dropzone from "react-dropzone";
 import addPicture from "../../assets/icons/portrait.svg";
 
-function ModalCreateChat({ setShow }) {
+function ModalCreateChat({ setShow, setChats, chats }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState([]);
@@ -33,13 +33,13 @@ function ModalCreateChat({ setShow }) {
   const handleTag = () => {
     if (!tag) return;
     else if (!tags.includes(tag)) {
-      setTags([...tags, tag]);
+      setTags([...tags, tag.toLowerCase()]);
       setTag("");
     }
   };
 
-  const handleChangeName = () => {
-    setName(name.toLowerCase());
+  const handleChangeName = (event) => {
+    setName(event.target.value);
   }
 
   const handleCreate = async (event) => {
@@ -70,12 +70,12 @@ function ModalCreateChat({ setShow }) {
 
       chat.avatarUrl = upload.data.url;
 
-      await axios.post(
+      const {data} = await axios.post(
         `http://localhost:8080/chats/create`,
         chat
       );
 
-      setOpen(true);
+      setChats([...chats, data]);
 
       setTag("");
       setName("");

@@ -26,7 +26,7 @@ function Login({ state, setState }) {
       localStorage.setItem('userLogin',data.login);
       localStorage.setItem('userName',data.user);
       localStorage.setItem('userToken',data.token);
-      localStorage.setItem('userId',data._id);
+      localStorage.setItem('userId',data.id);
 
       console.log(data);
 

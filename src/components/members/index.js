@@ -1,6 +1,7 @@
 import React from "react";
+import axios from "axios";
 import styles from "./members.module.css";
-import add from "../../assets/icons/add.svg"
+import add from "../../assets/icons/add.svg";
 
 function Members({ members }) {
   return (
@@ -9,10 +10,7 @@ function Members({ members }) {
         {members.map((member) => (
           <li className={styles.box} key={member._id}>
             <img src={member.avatarUrl} alt="profile" />
-            <div className={styles.memberInfo}>
-              <h2 className={styles.name}>{member.userName}</h2>
-              <img className={styles.icon} src={add} alt="add friend"/>
-            </div>
+            <h2 className={styles.name}>{member.userName}</h2>
           </li>
         ))}
       </ul>

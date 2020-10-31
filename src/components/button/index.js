@@ -21,7 +21,7 @@ function Button({ type, icon, iconAlt, text, height, width, onclick }) {
           src={icon}
           alt={iconAlt}
         />
-        <span className={styles.text}>{text.toUpperCase()}</span>
+        <span className={styles.text} style={{ width, height }}>{text.toUpperCase()}</span>
       </div>
     );
   } else {

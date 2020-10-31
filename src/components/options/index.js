@@ -39,15 +39,6 @@ function Options({ setShow, setOption }) {
         width="35px"
       />
       </div>
-      <div onClick={handleRequests}>
-      <Button
-        type="icon"
-        icon={requestIcon}
-        iconAlt="friend-request"
-        height="35px"
-        width="35px"
-      />
-      </div>
     </div>
   );
 }
