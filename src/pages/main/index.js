@@ -14,22 +14,20 @@ import ModalCreateChat from "../../components/modal";
 import ResultList from "../../components/resultList";
 import { Modal } from "@material-ui/core";
 const ENDPOINT = "http://localhost:8080";
+const socket = socketIOClient(ENDPOINT);
 
 function Main() {
-  const socket = socketIOClient(ENDPOINT);
   const [globalUser, setGlobalUser] = useState({});
   const [chats, setChats] = useState([]);
   const [openChat, setOpenChat] = useState(0);
-  const [members, setMembers] = useState([]);
   const [show, setShow] = useState(false);
   const [showChats, setShowChats] = useState(false);
   const [option, setOption] = useState("chats");
   const [resultChats, setResultChats] = useState([]);
-  const [response, setResponse] = useState("");
   const [messages, setMessages] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-
     async function fetchData() {
       const userLogin = localStorage.getItem("userLogin");
       const { data } = await axios.get(
@@ -39,87 +37,56 @@ function Main() {
       setGlobalUser({ ...data });
 
       const userChats = await axios.get(
-        `http://localhost:8080/chats/${userLogin}`
+        `http://localhost:8080/chats/user/${userLogin}`
       );
 
       setChats([...userChats.data.chats]);
 
-      const chatsMensagens = []
-      userChats.data.chats.forEach((chat) => {
-        chatsMensagens.push({chatId: chat._id, messages: [], page: 0})
-      });
- 
-      if(!!userChats.data.chats[0]){
-      const newMensagens = await axios.get(
-        `http://localhost:8080/chats/messages` , {chatId: userChats.data.chats[0]._id,
-        page: 0}
-      );
-      chatsMensagens[0].messages = newMensagens.data
-      setMessages(chatsMensagens);
-      }
+      let newMessages;
 
-      if(!!userChats.data.chats[0]) {
-        setMembers([...userChats.data.chats[0].members]);
+      if (userChats.data.chats.length > 0) {
+        newMessages = await axios.get(
+          `http://localhost:8080/chats/messages?chatId=${userChats.data.chats[0]._id}&page=${page}`
+        );
+        setMessages([...newMessages.data.pagination]);
       }
-     
     }
 
-    socket.on("connection", data => {
-      setResponse(data);
+    socket.on("connection", (data) => {
+      console.log(data);
     });
 
-    fetchData();
-
+    try {
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
-  useEffect(()=>{
-    socket.on("send", data=> {
-      const {chatId, sender, date, content} = data
+  useEffect(() => {
+    socket.emit("enter", chats);
+  }, [chats]);
+
+  useEffect(()=> {
+    socket.on("send", (data) => {
+
+      const { chatId, sender, date, content } = data;
+
       const newMessage = {
         sender,
         date,
         content,
+      };
+
+      if (!!chats[openChat]&&chatId === chats[openChat]._id) {
+
+        setMessages([...messages, newMessage]);
+
       }
-      const chatsMensagens = messages
-      chatsMensagens.forEach((message) => {
-        if(message.chatId === chatId){
-          message.messages = [...message.messages, newMessage]
-        }
-      })
-      setChats(chatsMensagens)
+
     });
-  });
 
-
-  useEffect(()=>{
-    socket.emit("enter", (chats));
-  },[chats]);
-
-  useEffect(() => {
-    async function fetchData(){
-      setMembers(chats.length > 0 ? chats[openChat].members : []);
-      
-      if(!!messages[openChat]&&messages[openChat].messages.length===0){
-      const chatsMessages = await axios.post(
-        `http://localhost:8080/chats/messages` , { chatId: messages[openChat].chatId,
-        page: 0}
-      );
-      const newMensagens = messages
-      chats[openChat].messages = chatsMessages.data
-      setMessages(newMensagens)
-      }
-    }
-    fetchData();
-  }, [openChat]);
-
-
-
-
-  // useEffect(() => {
-  //   setMessages(chats.length > 0 ? chats[openChat].messages : []);
-  // }, [chats.length > 0 ? chats[openChat].messages : chats]);
-
-  //chats.length > 0 ? [chats]: []
+  },[messages]);
 
   const handleShow = () => {
     setShow(true);
@@ -127,6 +94,25 @@ function Main() {
   const handleClose = () => {
     setShow(false);
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      if (chats.length > 0) {
+        const { data } = await axios.get(
+          `http://localhost:8080/chats/messages?chatId=${chats[openChat]._id}&page=${page}`
+        );
+        console.log("Page:", page);
+        setMessages([...data.pagination]);
+        setPage(1);
+      }
+    }
+
+    try {
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [openChat]);
 
   return (
     <div className={styles.box}>
@@ -163,14 +149,28 @@ function Main() {
           option={option}
           setOption={setOption}
         />
-        {(option === "chats")&&<ChatList chats={chats} setChat={setOpenChat} />}
+        {option === "chats" && <ChatList chats={chats} setChat={setOpenChat} />}
         <div className={styles.chats}></div>
       </div>
       <div className={styles.messagesAndSend}>
         {chats.length > 0 && <ChatTop chat={chats[openChat]} />}
-        <Members members={!!members ? members : []} />
-        <MessageBox messages={!!messages[openChat]? messages[openChat].messages: []} user={globalUser.login}/>
-        <TextInput chatId={chats.length > 0 ? chats[openChat]._id : null} sender={globalUser.login}/>
+        {chats.length > 0 && chats[openChat].members && (
+          <Members members={chats[openChat] ? chats[openChat].members : []} />
+        )}
+        <MessageBox
+          messages={messages}
+          user={globalUser.login}
+          page={page}
+          setPage={setPage}
+          setMessages={setMessages}
+          chatId={chats.length > 0 ? chats[openChat]._id : 0}
+          totalMessages={chats.length > 0 ? chats[openChat].totalMessages : 0}
+          chats
+        />
+        <TextInput
+          chatId={chats.length > 0 ? chats[openChat]._id : null}
+          sender={globalUser.login}
+        />
       </div>
     </div>
   );

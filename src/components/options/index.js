@@ -1,7 +1,6 @@
 import React from "react";
 import chatIcon from "../../assets/icons/chat.svg";
 import createChatIcon from "../../assets/icons/create-chat.svg";
-import requestIcon from "../../assets/icons/friend-request.svg";
 import Button from "../button";
 import styles from "./options.module.css";
 
@@ -13,10 +12,6 @@ function Options({ setShow, setOption }) {
 
   const handleChats = () =>{
     setOption("chats")
-  }
-
-  const handleRequests = () =>{
-    setOption("requests")
   }
 
   return (

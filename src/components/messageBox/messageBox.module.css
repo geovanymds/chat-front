@@ -1,13 +1,11 @@
+
 .container {
   height: 64vh;
   background: url('https://cdn.discordapp.com/attachments/750063818197172284/767123755561648158/unknown.png');
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent; /* make scrollbar transparent */
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .messageList {

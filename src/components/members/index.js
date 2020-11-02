@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
 import styles from "./members.module.css";
-import add from "../../assets/icons/add.svg";
 
 function Members({ members }) {
   return (

@@ -16,10 +16,11 @@ function ResultCard({ chat }) {
       password
     }
 
-    try {
-      const { data } = axios.post('http://localhost:8080/chats/enter', body);
+    console.log(body.userId);
 
-      console.log(data);
+    try {
+      await axios.post('http://localhost:8080/chats/enter', body);
+
     } catch(error) {
       console.log(error);
     }

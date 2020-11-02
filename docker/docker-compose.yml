@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ../../chat
+    ports:
+      - "8080:8080"
+    container_name: chat-api
+    volumes:
+       - ../../chat:/node_app
+  client:
+    build:
+      context: ../../chat-front
+    ports:
+      - "3000:3000"
+    container_name: chat-web
+    stdin_open: true
+    volumes:
+       - ../../chat-front:/app
