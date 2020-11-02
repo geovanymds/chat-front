@@ -42,7 +42,22 @@ function Main() {
 
       setChats([...userChats.data.chats]);
 
+<<<<<<< HEAD
       let newMessages;
+=======
+      // const chatsMensagens = []
+      // userChats.data.chats.forEach((chat) => {
+      //   chatsMensagens.push({chatId: chat._id, messages: [], page: 0})
+      // });
+ 
+      if(!!userChats.data.chats[0]){
+      const newMensagens = await axios.get(
+        `http://localhost:8080/chats/messages` , {chatId: userChats.data.chats[0]._id,
+        page: 0}
+      );
+      setMessages([...newMensagens]);
+      }
+>>>>>>> 5bbb4d0b28824f936337e3aa703882c8aa5735d1
 
       if (userChats.data.chats.length > 0) {
         newMessages = await axios.get(
@@ -76,18 +91,42 @@ function Main() {
         sender,
         date,
         content,
+<<<<<<< HEAD
       };
+=======
+      }
+      if((chats.length > 0) && chatId === chats[openChat]._id)
+      setMessages([...messages, newMessage])
+    });
+  });
+>>>>>>> 5bbb4d0b28824f936337e3aa703882c8aa5735d1
 
       if (!!chats[openChat]&&chatId === chats[openChat]._id) {
 
         setMessages([...messages, newMessage]);
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    async function fetchData(){
+      setMembers(chats.length > 0 ? chats[openChat].members : []);
+      
+      if(!!messages[openChat]){
+      const newMensagens = await axios.post(
+        `http://localhost:8080/chats/messages` , { chatId: messages[openChat].chatId,
+        page: 0}
+      );
+      setMessages([...newMensagens]);
+>>>>>>> 5bbb4d0b28824f936337e3aa703882c8aa5735d1
       }
 
     });
 
+<<<<<<< HEAD
   },[messages]);
 
+=======
+>>>>>>> 5bbb4d0b28824f936337e3aa703882c8aa5735d1
   const handleShow = () => {
     setShow(true);
   };
