@@ -37,7 +37,7 @@ function Main() {
       setGlobalUser({ ...data });
 
       const userChats = await axios.get(
-        `http://localhost:8080/chats/user/${userLogin}`
+        `http://localhost:8080/chats/${userLogin}`
       );
 
       setChats([...userChats.data.chats]);
