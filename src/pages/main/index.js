@@ -50,16 +50,16 @@ function Main() {
       // });
  
       if(!!userChats.data.chats[0]){
-      const newMensagens = await axios.get(
+      const newMessages = await axios.get(
         `http://localhost:8080/chats/messages` , {chatId: userChats.data.chats[0]._id,
         page: 0}
       );
-      setMessages([...newMensagens]);
+      setMessages([...newMessages]);
       }
 
 
       if (userChats.data.chats.length > 0) {
-        newMessages = await axios.get(
+        const newMessages = await axios.get(
           `http://localhost:8080/chats/messages?chatId=${userChats.data.chats[0]._id}&page=${page}`
         );
         setMessages([...newMessages.data.pagination]);
@@ -96,23 +96,11 @@ function Main() {
     });
   });
 
-      if (!!chats[openChat]&&chatId === chats[openChat]._id) {
+      // if (!!chats[openChat]&&chatId === chats[openChat]._id) {
 
-        setMessages([...messages, newMessage]);
+      //   setMessages([...messages, newMessage]);
 
-  useEffect(() => {
-    async function fetchData(){
-      setMembers(chats.length > 0 ? chats[openChat].members : []);
-      
-      if(!!messages[openChat]){
-      const newMensagens = await axios.post(
-        `http://localhost:8080/chats/messages` , { chatId: messages[openChat].chatId,
-        page: 0}
-      );
-      setMessages([...newMensagens]);
-      }
-
-    });
+    
 
   const handleShow = () => {
     setShow(true);
